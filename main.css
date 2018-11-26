@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+}
+.game {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background-color: darkslategrey;
+background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40%,darkslategrey 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.tank {
+    transform: rotate(180deg);
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+}
+.bullet {
+    display: none;
+    position: absolute;
+    width: 30px;
+    bottom: 120px;
+    left: 50px;
+}
+.aim {
+    position: absolute;
+    width: 40px;
+    opacity: .8;
+    left: 50%;
+    bottom: 350px;
+}
+.shot {
+    color: white;
+}
+.hit {
+    color: red;
+}
