@@ -24,11 +24,13 @@ let inner_Width = window.innerWidth
 let inner_Height = window.innerHeight
 
 log(inner_Height)
+
 // Оброботчик события resize отримуєм поточну ширину робочої області браузера
 window.addEventListener('resize', () => {
     inner_Width = window.innerWidth
     log(inner_Width)
 })
+
 // слухаэм клавіатуру
 window.addEventListener('keydown', (e) => {
     if (e.key == 'ArrowLeft') {
@@ -49,7 +51,6 @@ window.addEventListener('keydown', (e) => {
         bullet.style.display = 'block'
         log('ff')
         bullet_move = true
-
     }
 })
 
@@ -70,8 +71,8 @@ function bullet_to_start() {
     bullet.src = 'Bullet.png'
     bullet.style.width = '30px'
 }
-setInterval(() => {
 
+setInterval(() => {
     // ++
     aim_y -= 4
     aim_x++
@@ -108,22 +109,8 @@ setInterval(() => {
             bullet_to_start()
         }
         //Виводим кількість пострілів
-
         shot.innerHTML = `Поcтрілів: ${counter_shot}`
     }
-
-
-
-    // x += 10
-
-    // if (x < inner_Width - 128){
-    //     tank.style.left = x + 'px'}
-    // log(tank.style.left)
-    // log(x)
-    // log(inner_Width)
-
-
-
 }, 100)
 
 //dz обмежити вихід танка за межі 
