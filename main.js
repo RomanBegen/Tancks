@@ -8,9 +8,13 @@ let bullet_flies;
 let aim_y = 600;
 let aim_x = 100;
 let aim_size = 40;
+let bullet_aim_y = 600;
+let bullet_aim_x = 100;
+
 const tank = document.querySelector('.tank')
 const bullet = document.querySelector('.bullet')
 const aim = document.querySelector('.aim')
+const bullet_aim = document.querySelector('.bullet-aim')
 
 let shot = document.querySelector('.shot')
 let counter_shot = 0
@@ -23,12 +27,10 @@ hit.innerHTML = `Попадань: ${counter_hit}`
 let inner_Width = window.innerWidth
 let inner_Height = window.innerHeight
 
-log(inner_Height)
 
 // Оброботчик события resize отримуєм поточну ширину робочої області браузера
 window.addEventListener('resize', () => {
     inner_Width = window.innerWidth
-    log(inner_Width)
 })
 
 // слухаэм клавіатуру
@@ -39,7 +41,6 @@ window.addEventListener('keydown', (e) => {
     if (e.key == 'ArrowRight') {
         if (x < (inner_Width - 128)) { x += 10 }
     }
-    log(e)
     tank.style.left = x + 'px'
     if (e.code == 'Space') {
         // відвязуєм снаряд від танка
@@ -49,7 +50,6 @@ window.addEventListener('keydown', (e) => {
         bullet_x = bullet_x_start
         bullet.style.left = bullet_x + 'px'
         bullet.style.display = 'block'
-        log('ff')
         bullet_move = true
     }
 })
@@ -71,6 +71,21 @@ function bullet_to_start() {
     bullet.src = 'Bullet.png'
     bullet.style.width = '30px'
 }
+function shot_bullet_aim() {
+    bullet_aim_y -= 10
+    bullet_aim.style.bottom = bullet_aim_y + 'px'
+    bullet_aim.style.left = bullet_aim_x + 'px'
+    bullet_aim.style.display = 'block'
+
+    if (bullet_aim_y < 0) {
+        bullet_aim_y = aim_y
+        aim_y -= 10
+        bullet_aim.style.bottom = bullet_aim_y + 'px'
+        bullet_aim_x = aim_x + aim_size / 2
+        bullet_aim.style.left = bullet_aim_x + 'px'
+        bullet_aim.style.display = 'block'
+    }
+}
 
 setInterval(() => {
     // ++
@@ -78,8 +93,22 @@ setInterval(() => {
     aim_x++
     aim_size += 1
 
+    // spoil counter, spoil-bar
+    //
+    // bulet reaction - the same
+
+    // Перевірка на зіткнення 
+    if (aim_y < 70 && (x + 128 > aim_x && x < aim_x + aim_size)) {
+        tank.classList.add('spoil')
+        setTimeout(() => {
+            tank.classList.remove('spoil')
+        }, 500)
+    }
+    log(aim_x, aim_y)
+    log(x)
+
     // Танк доїзжає bottom:0 починає рух з початку
-    if (aim_y == 0) aim_to_start()
+    if (aim_y < 0) aim_to_start()
 
     // передати змінні для танку(цілі)
     aim.style.width = aim_size + 'px'
@@ -103,6 +132,7 @@ setInterval(() => {
             setTimeout(() => {
                 bullet_to_start()
                 aim_to_start()
+
             }, 300)
         }
         if (bullet_y > inner_Height) {
@@ -111,8 +141,12 @@ setInterval(() => {
         //Виводим кількість пострілів
         shot.innerHTML = `Поcтрілів: ${counter_shot}`
     }
+    shot_bullet_aim()
 }, 100)
 
 //dz обмежити вихід танка за межі 
 // якшо куля вийшла за екран встановити її на вихідне положення і відмінити рух
 // зробити пулю невидимою коли вона не литить
+
+
+

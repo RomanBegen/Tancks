@@ -14,6 +14,13 @@ background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40
     position: absolute;
     bottom: 0;
     left: 0px;
+    
+    
+}
+.spoil{
+    
+    -webkit-filter: hue-rotate(250deg);
+  filter: hue-rotate(250deg);
 }
 .bullet {
     display: none;
@@ -28,6 +35,13 @@ background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40
     opacity: .8;
     left: 50%;
     bottom: 350px;
+}
+.bullet-aim {
+    display: none;
+    position: absolute;
+    width: 30px;
+    bottom: 120px;
+    left: 50px;
 }
 .shot {
     color: white;
