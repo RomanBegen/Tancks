@@ -16,6 +16,8 @@ const bullet = document.querySelector('.bullet')
 const aim = document.querySelector('.aim')
 const bullet_aim = document.querySelector('.bullet-aim')
 
+let life_caunter = 3
+let antispoller = false
 let shot = document.querySelector('.shot')
 let counter_shot = 0
 shot.innerHTML = `Поcтрілів: ${counter_shot}`
@@ -96,16 +98,34 @@ setInterval(() => {
     // spoil counter, spoil-bar
     //
     // bulet reaction - the same
-
     // Перевірка на зіткнення 
-    if (aim_y < 70 && (x + 128 > aim_x && x < aim_x + aim_size)) {
+    if (aim_y < 70 && (x + 128 > aim_x && x < aim_x + aim_size) || bullet_aim_y < 120 && (x + 128 > bullet_aim_x && x < bullet_aim_x)) {
         tank.classList.add('spoil')
+        if (!antispoller) {
+            const life = document.querySelectorAll('.life')
+            life_caunter--
+            if (life_caunter == 0){
+                alert('end')
+                location.reload()
+            }
+            life [0].remove()
+            log(life_caunter)
+            antispoller = true
+            setTimeout (() =>{
+                antispoller = false
+            },1500)
+        }
         setTimeout(() => {
             tank.classList.remove('spoil')
         }, 500)
     }
-    log(aim_x, aim_y)
-    log(x)
+    // log(aim_x, aim_y)
+    // log(x)
+
+    function see_life() {
+
+    }
+    see_life()
 
     // Танк доїзжає bottom:0 починає рух з початку
     if (aim_y < 0) aim_to_start()

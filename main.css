@@ -19,8 +19,8 @@ background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40
 }
 .spoil{
     
-    -webkit-filter: hue-rotate(250deg);
-  filter: hue-rotate(250deg);
+    -webkit-filter: hue-rotate(300deg);
+  filter: hue-rotate(300deg);
 }
 .bullet {
     display: none;
@@ -48,4 +48,12 @@ background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40
 }
 .hit {
     color: red;
+}
+.life {
+    position: absolute;
+    
+    top: 0;
+    right: 0;
+    margin: 5px;
+    width: 25px; 
 }
