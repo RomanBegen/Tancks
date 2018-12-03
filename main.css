@@ -57,3 +57,23 @@ background: linear-gradient(to bottom, rgb(85, 122, 122) 0%,rgb(72, 116, 116) 40
     margin: 5px;
     width: 25px; 
 }
+.audio-1 {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    opacity: .3;
+}
+.audio-2 {
+    position: absolute;
+    top: 60px;
+    left: 150px;
+    opacity: .3;
+    display: none;
+}
+.audio-3 {
+    position: absolute;
+    top: 120px;
+    left: 150px;
+    opacity: .3;
+    display: none;
+}

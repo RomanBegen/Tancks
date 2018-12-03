@@ -16,6 +16,30 @@ const bullet = document.querySelector('.bullet')
 const aim = document.querySelector('.aim')
 const bullet_aim = document.querySelector('.bullet-aim')
 
+const audio_1 = document.querySelector('.audio-1')
+
+// window.onload = function() {
+//     audio_1.play()
+//   };
+audio_1.play()
+
+
+// window.addEventListener("DOMContentLoaded", () => {
+//     audio_1.play()
+// })
+audio_1.addEventListener("ended", () => {
+    
+    audio_1.play()
+})
+const audio_2 = document.querySelector('.audio-2')
+function playAudio_2() {
+    audio_2.play()
+}
+const audio_3 = document.querySelector('.audio-3')
+function playAudio_3() {
+    audio_3.play()
+}
+
 let life_caunter = 3
 let antispoller = false
 let shot = document.querySelector('.shot')
@@ -45,6 +69,7 @@ window.addEventListener('keydown', (e) => {
     }
     tank.style.left = x + 'px'
     if (e.code == 'Space') {
+        playAudio_2()
         // відвязуєм снаряд від танка
         if (bullet_y == 120) {
             bullet_x_start = x + 50
@@ -101,19 +126,20 @@ setInterval(() => {
     // Перевірка на зіткнення 
     if (aim_y < 70 && (x + 128 > aim_x && x < aim_x + aim_size) || bullet_aim_y < 120 && (x + 128 > bullet_aim_x && x < bullet_aim_x)) {
         tank.classList.add('spoil')
+        playAudio_3()
         if (!antispoller) {
             const life = document.querySelectorAll('.life')
             life_caunter--
-            if (life_caunter == 0){
+            if (life_caunter == 0) {
                 alert('end')
                 location.reload()
             }
-            life [0].remove()
+            life[0].remove()
             log(life_caunter)
             antispoller = true
-            setTimeout (() =>{
+            setTimeout(() => {
                 antispoller = false
-            },1500)
+            }, 1500)
         }
         setTimeout(() => {
             tank.classList.remove('spoil')
@@ -170,3 +196,6 @@ setInterval(() => {
 
 
 
+// 1) коли вистріл (пробіл) - програвати звук вистрілу ( element.play() )
+// 2) додати ще один програвач для фонового звуку (вітер) і зациклити (кругове автопрогравання)
+// 3) додати вибух саряда при влучанні в танк
